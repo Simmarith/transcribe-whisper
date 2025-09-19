@@ -1,0 +1,6 @@
+sounddevice
+numpy
+openai-whisper
+pynput
+soundfile
+playsound3

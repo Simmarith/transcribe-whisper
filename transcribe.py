@@ -58,13 +58,15 @@ def transcribe_audio(audio_data):
     """Transcribes audio data using Whisper."""
     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp_file:
         sf.write(tmp_file.name, audio_data, SAMPLE_RATE)
-        
+        tmp_file_name = tmp_file.name
+
+    try:
         print("Transcribing...")
         model = whisper.load_model(MODEL)  # Or choose another model size
-        result = model.transcribe(tmp_file.name)
-        
-        os.remove(tmp_file.name)
+        result = model.transcribe(tmp_file_name)
         return result["text"]
+    finally:
+        os.remove(tmp_file_name)
 
 def type_text(text, keyboard):
     """Types out the given text using pynput."""

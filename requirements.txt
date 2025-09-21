@@ -4,3 +4,4 @@ openai-whisper
 pynput
 soundfile
 playsound3
+pyperclip
